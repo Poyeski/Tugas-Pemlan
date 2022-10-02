@@ -1,0 +1,71 @@
+void reg_anggota() // Untuk registrasi atau mendaftarkan anggota baru
+{
+    system("cls");
+    jumlah += 0;
+    jml_anggota.jumlah_anggota += 0;
+    cout << "Registrasi Anggota Perpustakaan Gulag\n" << endl;
+    cout << "Masukkan nama: ";
+    cin >> datai[jumlah].nama_anggota;
+    cout << "Masukkan id: ";
+    cin >> datai[jumlah].id_anggota;
+    jml_anggota.jumlah_anggota++;
+    jumlah++;
+    cout << "Registrasi telah selesai. Kembali ke menu utama? (y/n (jika ingin tambah anggota) ): ";
+    cin >> pilihan;
+    if (pilihan == "y" || pilihan == "Y")
+    {
+        cout << "\nKembali ke menu utama" << endl;
+        system("pause");
+        menu_utama();
+    }
+    else if (pilihan == "n" || pilihan == "N")
+    {
+        reg_anggota();
+    }
+}
+
+void cek_anggota() // Mengecek anggota perpustakaan pribadi
+{
+    system("cls");
+
+    cout << "Masukkan id: "; cin >> input_id;
+    for (i = 0; i < jml_anggota.jumlah_anggota; i++)
+    {
+        if(input_id == datai[i].id_anggota)
+        {
+            system("cls");
+            cout << "==== Kartu Anggota Perpustakaan Gulag ====\n" << endl;
+            cout << "Nama                      : " << datai[i].nama_anggota << endl;
+            cout << "Id                        : " << datai[i].id_anggota << endl;
+            cout << "Jumlah buku yang dipinjam : " << juml[i].jumlah_pinjam << endl;
+            cout << "\n==========================================\n" << endl;
+            cout << "\nIngin meminjam buku? (y/n): "; cin >> pilihan;
+            if (pilihan == "y" || pilihan == "Y")
+            {
+                pinjam_buku();
+            } 
+            else if (pilihan == "n" || pilihan == "N") {
+                cout << "\nKembali ke menu utama" << endl;
+                system("pause");
+                menu_utama();
+            }
+        }
+    }
+    cout << "Id tidak terdaftar. \n1. Masukkan id yang sesuai dengan kartu anggota anda\n
+    2. Mendaftar sebagai anggota perpustakaan \n0. Kembali ke menu utama\n\nPilihan: ";
+    cin >> opsi;
+    if (opsi == 1) {
+        system("pause");
+        cek_anggota();
+    }
+    else if (opsi == 2) {
+        cout << "\n\nKe proses pendaftaran." << endl;
+        system ("pause");
+        reg_anggota();
+    }
+    else if (opsi == 0) {
+        cout << "Kembali ke menu utama\n" << endl;
+        system("pause");
+        menu_utama();
+    }
+}
