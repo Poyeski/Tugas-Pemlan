@@ -1,0 +1,166 @@
+#include <iostream>
+#include <string>
+#include <cstring> 
+
+using namespace std;
+
+void pinjam_buku();
+void setor_buku();
+
+string input_id, pilihan; 
+char password[10], username[10];// login admin
+int pilih_pinjam, jumlah, urutan, i, opsi;// memasukkan input pilihan
+
+struct kartu_anggota // Mendaftarkan anggota baru lalu menampilkannya.
+{
+    string nama_anggota;
+    string id_anggota;  
+    int jumlah_anggota;
+};
+kartu_anggota data[100], jml_anggota;
+
+struct data_peminjaman // Menghitung jumlah peminjaman buku dan pengembalian buku
+{
+    int jumlah_pinjam;
+    int jumlah_kembali;
+};
+data_peminjaman juml[100];
+
+struct data_buku // Menampilkan nama dan kode buku yang nantinya akan dipinjam
+{
+    string nama_buku;
+    string id_buku;
+};
+data_buku buku[100];
+
+void pinjam_buku() { // Untuk proses meminjam buku
+
+    system("cls");
+    juml[100].jumlah_pinjam += 0;
+    i = 0;
+    cout << "Masukkan id: ";
+    cin >> input_id;
+    for (i = 0; i < jml_anggota.jumlah_anggota; i++) {
+        if (input_id == data[i].id_anggota) {
+            system("cls");
+            cout << "Selamat datang, " << data[i].nama_anggota << "! Berikut adalah daftar buku yang tersedia: \n" << endl;
+            for (urutan = 0; urutan <= 7; urutan++) {
+                cout << urutan + 1 << ". " << buku[urutan].nama_buku << endl;
+                cout << "   Kode Buku: " << buku[urutan].id_buku << endl;
+            }
+            cout << "\nSilakan pilih buku yang akan anda pinjam: "; cin >> pilih_pinjam;
+            switch (pilih_pinjam) {
+                case 1:
+                    cout << "\nAnda memilih buku berjudul: " << buku[pilih_pinjam-1].nama_buku << "\nDengan kode buku: " << buku[pilih_pinjam-1].id_buku << endl;
+                    juml[i].jumlah_pinjam++;
+                    break;
+                case 2:
+                    cout << "\nAnda memilih buku berjudul: " << buku[pilih_pinjam-1].nama_buku << "\nDengan kode buku: " << buku[pilih_pinjam-1].id_buku << endl;
+                    juml[i].jumlah_pinjam++;
+                    break;
+                case 3:
+                    cout << "\nAnda memilih buku berjudul: " << buku[pilih_pinjam-1].nama_buku << "\nDengan kode buku: " << buku[pilih_pinjam-1].id_buku << endl;
+                    juml[i].jumlah_pinjam++;
+                    break;
+                case 4:
+                    cout << "\nAnda memilih buku berjudul: " << buku[pilih_pinjam-1].nama_buku << "\nDengan kode buku: " << buku[pilih_pinjam-1].id_buku << endl;
+                    juml[i].jumlah_pinjam++;
+                    break;
+                case 5:
+                    cout << "\nAnda memilih buku berjudul: " << buku[pilih_pinjam-1].nama_buku << "\nDengan kode buku: " << buku[pilih_pinjam-1].id_buku << endl;
+                    juml[i].jumlah_pinjam++;
+                    break;
+                case 6:
+                    cout << "\nAnda memilih buku berjudul: " << buku[pilih_pinjam-1].nama_buku << "\nDengan kode buku: " << buku[pilih_pinjam-1].id_buku << endl;
+                    juml[i].jumlah_pinjam++;
+                    break;
+                case 7:
+                    cout << "\nAnda memilih buku berjudul: " << buku[pilih_pinjam-1].nama_buku << "\nDengan kode buku: " << buku[pilih_pinjam-1].id_buku << endl;
+                    juml[i].jumlah_pinjam++;
+                    break;
+                case 8:
+                    cout << "\nAnda memilih buku berjudul: " << buku[pilih_pinjam-1].nama_buku << "\nDengan kode buku: " << buku[pilih_pinjam-1].id_buku << endl;
+                    juml[i].jumlah_pinjam++;
+                    break;
+                default:
+                    cout << "Error input." << endl;
+                    system("pause");
+                    menu_utama();
+            }
+            cout << "\nProses peminjaman buku telah berhasil.";
+            cout << "\n\nKembali ke menu utama" << endl;
+            system("pause");
+            menu_utama();   
+        }
+    }
+    cout << "Id tidak terdaftar. \n1. Masukkan id yang sesuai dengan kartu anggota anda \n2. Kembali ke menu utama\n\nPilihan: ";
+    cin >> opsi;
+    if (opsi == 1) {
+        system("pause");
+        pinjam_buku();
+    }
+    else if (opsi == 2) {
+        cout << "Kembali ke menu utama\n" << endl;
+        system("pause");
+        menu_utama();
+    }
+}
+
+void setor_buku() { // Untuk proses mengembalikan buku
+
+    system("cls");
+    cout << "Masukkan id: ";
+    cin >> input_id;
+    for (i = 0; i < jml_anggota.jumlah_anggota; i++) {
+        if (input_id == data[i].id_anggota) {
+            if(juml[i].jumlah_pinjam != 0) {
+                system("cls");
+                cout << data[i].nama_anggota << " : " << data[i].id_anggota;
+                cout << "\nJumlah buku yang dipinjam : " << juml[i].jumlah_pinjam;
+                cout << "\n\nBerapa banyak buku yang akan dikembalikan? (0 jika tidak jadi mengembalikan buku): "; cin >> juml[i].jumlah_kembali;
+                juml[i].jumlah_pinjam -= juml[i].jumlah_kembali;
+
+                while (juml[i].jumlah_pinjam < 0) // Peringatan jika buku yang akan dikembalikan melebihi buku yang dipinjam
+                {
+                    cout << "\nJumlah buku yang dikembalikan melebihi jumlah buku yang dipinjam." << endl;
+                    juml[i].jumlah_pinjam += juml[i].jumlah_kembali; 
+                    cout << "\nMasukkan ulang jumlah buku yang akan dikembalikan: "; cin >> juml[i].jumlah_kembali;
+                    juml[i].jumlah_pinjam -= juml[i].jumlah_kembali;
+                    system("cls");
+                }
+
+                cout << "\nProses pengembalian buku telah berhasil." << endl;
+                cout << "\nKembali ke menu utama" << endl;
+                system("pause");
+                menu_utama();
+            } else {
+                system("cls");
+                cout << data[i].nama_anggota << " : " << data[i].id_anggota;
+                cout << "\nJumlah buku yang dipinjam : " << juml[i].jumlah_pinjam;
+                cout << "\n\nAnda belum meminjam buku sama sekali. Ingin meminjam buku? (y/n): "; cin >> pilihan;
+                if (pilihan == "y" || pilihan == "Y")
+                {
+                    system("cls");
+                    pinjam_buku();
+                }
+                else if (pilihan == "n" || pilihan == "N")
+                {
+                    cout << "Kembali ke menu utama\n";
+                    system("pause");
+                    menu_utama();
+                }
+            }
+        }
+    }
+    cout << "Id tidak terdaftar. \n1. Masukkan id yang sesuai dengan kartu anggota anda \n2. Kembali ke menu utama\n\nPilihan : ";
+    cin >> opsi;
+    if (opsi == 1) {
+        system("pause");
+        setor_buku();
+    }
+    else if (opsi == 2) {
+        cout << "Kembali ke menu utama\n" << endl;
+        system("pause");
+        menu_utama();
+    }
+}
