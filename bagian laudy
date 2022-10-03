@@ -1,0 +1,70 @@
+void menu_utama();
+void daftar_buku();
+
+void menu_utama() // Tampilan awal saat user masuk ke program
+{
+    system("cls");
+    cout << "~~~~~~~~~~~~~~~~~~~oOo~~~~~~~~~~~~~~~~~~~" << endl;
+    cout << "| Selamat datang di Perpustakaan Gulag! |" << endl;
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+    cout << "\n1. Daftar Buku" << endl;
+    cout << "2. Daftar Anggota Perpustakaan (Administrator)" << endl;
+    cout << "3. Peminjaman Buku" << endl;
+    cout << "4. Pengembalian Buku" << endl;
+    cout << "5. Registrasi Anggota Perpustakaan" << endl;
+    cout << "6. Cek Anggota dan Jumlah Buku yang Dipinjam" << endl;
+    cout << "0. Keluar\n" << endl;
+    cout << "Input: ";
+    cin >> opsi;
+
+    switch (opsi)
+    {
+        case 1:
+            daftar_buku();
+            break;
+        case 2:
+            list_anggota();
+            break;
+        case 3:
+            pinjam_buku();
+            break;
+        case 4:
+            setor_buku();
+            break;
+        case 5:
+            reg_anggota();
+            break;
+        case 6:
+            cek_anggota();
+            break;
+        case 0:
+            cout << "Terima kasih telah menggunakan aplikasi kami." << endl;
+            exit(0);
+        default:
+            cout << "Invalid input. Kembali ke menu utama" << endl;
+            system("pause");
+            menu_utama();
+    }
+}
+
+void daftar_buku() // Untuk menampilkan nama dan kode buku
+{
+    system("cls");
+    cout << "List buku yang terdapat di perpustakaan:\n" << endl;
+    for (urutan = 0; urutan <= 7; urutan++) {
+        cout << urutan + 1 << ". " << buku[urutan].nama_buku << endl;
+        cout << "   Kode Buku: " << buku[urutan].id_buku << endl;
+    }
+    cout << "\nIngin meminjam buku? (y/n): ";
+    cin >> pilihan;
+    if (pilihan == "y" || pilihan == "Y")
+    {
+        pinjam_buku();
+    }
+    else if (pilihan == "n" || pilihan == "N")
+    {
+        cout << "Kembali ke menu utama" << endl;
+        system("pause");
+        menu_utama();
+    }
+}
