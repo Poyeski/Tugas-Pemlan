@@ -1,0 +1,63 @@
+void list_anggota() // Ibarat seperti menjadi administrator, nantinya akan menampilkan keseluruhan data anggota serta jumlah buku yang dipinjam
+{
+    jml_anggota.jumlah_anggota += 0;
+    juml[100].jumlah_pinjam += 0;
+    system("cls");
+    cout << "Silahkan masukkan username dan password.\n" << endl;
+    cout << "Username: "; cin >> username;
+    cout << "Password: "; cin >> password;
+    if (strcmp(password, "12345") == 0 && strcmp(username, "admin") == 0) {
+        if (jml_anggota.jumlah_anggota != 0)
+        {
+            system("cls");
+            cout << "Daftar Anggota Perpustakaan Gulag\n\n";
+            cout << "Jumlah anggota: " << jumlah << endl << endl;
+            for (i = 0; i < jumlah; i++)
+            {
+                cout << i + 1 << ". " << "Nama: " << data[i].nama_anggota << endl;
+                cout << "   Id: " << data[i].id_anggota << endl;
+                cout << "   Jumlah buku yang dipinjam: " << juml[i].jumlah_pinjam << endl << endl;
+            }
+        } else {
+            cout << "\nBelum ada anggota." << endl;
+            cout << "Kembali ke menu utama\n";
+            system("pause");
+            menu_utama();
+        }
+        cout << "\nKembali ke menu utama\n";
+        system("pause");
+        menu_utama();
+    } else {
+        cout << "Password atau username salah.\n\n1. Login kembali\n2. Kembali ke menu utama\n\nPilihan : ";
+        cin >> opsi;
+        
+        if (opsi == 1){
+            system ("pause");
+            list_anggota();
+        }
+        else if (opsi == 2){
+            system ("pause");
+            menu_utama();
+        }   
+    }
+}
+
+
+//////////////////////////////////////
+
+int main() {
+
+    buku[0].nama_buku = "Algoritma dan Pemrograman Bahasa C/C++";           buku[0].id_buku = "AP-215";
+    buku[1].nama_buku = "Buku Panduan Pembelajaran MySQL";                  buku[1].id_buku = "BD-721";
+    buku[2].nama_buku = "Dasar-Dasar Logika Matematika";                    buku[2].id_buku = "MD-349";
+    buku[3].nama_buku = "Gerbang Logika Beserta Penerapannya";              buku[3].id_buku = "SD-105";
+    buku[4].nama_buku = "Matriks dan Vektor Beserta Penerapannya";          buku[4].id_buku = "AL-458";
+    buku[5].nama_buku = "Ideologi dan Konstitusi: Edisi Pancasila";         buku[5].id_buku = "PK-566";
+    buku[6].nama_buku = "Pembuktian Keberadaan Tuhan Dengan Sains Modern";  buku[6].id_buku = "PA-612";
+    buku[7].nama_buku = "Sistem Teknologi dan Informasi";                   buku[7].id_buku = "ST-814";
+
+    system("cls");
+    menu_utama();
+    return 0;
+}
+
