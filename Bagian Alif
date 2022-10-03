@@ -1,3 +1,6 @@
+void reg_anggota();
+void cek_anggota();
+
 void reg_anggota() // Untuk registrasi atau mendaftarkan anggota baru
 {
     system("cls");
