@@ -34,7 +34,6 @@ void list_anggota() // Ibarat seperti menjadi administrator, nantinya akan menam
         if (opsi == 1){
             system ("pause");
             
-            .
             list_anggota();
         }
         else if (opsi == 2){
