@@ -68,4 +68,3 @@ void daftar_buku() // Untuk menampilkan nama dan kode buku
         menu_utama();
     }
 }
-.
